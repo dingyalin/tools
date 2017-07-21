@@ -6,8 +6,9 @@ Created on 2016年5月6日
 '''
 
 import socket
-import paramiko
 import logging
+import paramiko
+
 
 class SshInstanceOperator():
     '''
@@ -32,11 +33,11 @@ class SshInstanceOperator():
 
         except Exception, ex:
             logging.error(ex)
-            
+
     def exec_command(self, cmd):
         try:
             stdin, stdout, stderr = self.ssh.exec_command(cmd)
-            ## stdin.write("Y")   #简单交互，输入 ‘Y’
+            # stdin.write("Y")   #简单交互，输入 ‘Y’
             out = stdout.readlines()
             err = stderr.readlines()
             for each_out in out:
@@ -45,7 +46,7 @@ class SshInstanceOperator():
                 logging.info(self.hostname + each_err.strip())
         except Exception, ex:
             logging.error(ex)
-            
+
     def put(self, source_path, target_path):
         try:
             ftp_rst = self.sftp.put(source_path, target_path)
@@ -53,7 +54,7 @@ class SshInstanceOperator():
             return ftp_rst
         except Exception, ex:
             logging.error(ex)
-            
+
     def change_to_root_user(self, root_password):
         logging.info("Ready to change user to root")
         self.channel.send("su\n")
@@ -69,7 +70,7 @@ class SshInstanceOperator():
             response_string += self.channel.recv(self._recv_buffer)
 
         logging.info("Change user to root success")
-        
+
     # 从 root 用户上退出来
     def exit_from_root_user(self):
         logging.info("Ready to exit from root user")
@@ -79,7 +80,7 @@ class SshInstanceOperator():
             response_string = self.channel.recv(self._recv_buffer)
 
         logging.info("Exit from root user success")
-        
+
     # 使用root用户在打开的连接上执行一条指令
     def exec_command_with_root_user(self, cmd, root_password):
         try:
@@ -94,9 +95,7 @@ class SshInstanceOperator():
             response_string += self.channel.recv(self._recv_buffer)
 
         self.exit_from_root_user()
-            
-    
-        
+
     def close(self):
         try:
             self.channel.close()
@@ -104,4 +103,3 @@ class SshInstanceOperator():
             self.ssh.close()
         except Exception, ex:
             logging.error(ex)
-            
