@@ -76,7 +76,8 @@ class SshInstanceOperator():
         logging.info("Ready to exit from root user")
         self.channel.send("exit\n")
         response_string = self.channel.recv(self._recv_buffer)
-        while not response_string.strip().endswith('$') and not response_string.strip().endswith('~>'):
+        while not response_string.strip().endswith('$') and\
+                not response_string.strip().endswith('~>'):
             response_string = self.channel.recv(self._recv_buffer)
 
         logging.info("Exit from root user success")
