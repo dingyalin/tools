@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# pylint: disable-msg=W1201,C0111,C0103,W0201,w0231,W0621,W0212,W0612,R0903
+# pylint: disable-msg=W1201,C0111,C0103,W0201,w0231,W0621,W0212,W0612,R0903,R0913
 
 '''
 Created on 2017年5月11日
