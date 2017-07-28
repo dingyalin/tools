@@ -20,6 +20,7 @@ def set_logging_format(log_file):
                         datefmt='%a, %d %b %Y %H:%M:%S',
                         filename=log_file,
                         filemode='w')
+    # console
     console = logging.StreamHandler()
     console.setLevel(logging.DEBUG)
     formatter = logging.Formatter('[%(filename)s][%(levelname)s] %(message)s')
