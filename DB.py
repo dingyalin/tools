@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# pylint: disable-msg=W1201,C0111,C0103,W0201
+# pylint: disable-msg=W1201,C0111,C0103,W0201,w0231,W0621,W0212,W0612,R0903
 
 '''
 Created on 2017年5月11日
@@ -263,8 +263,9 @@ class DB(object):
     @with_connection
     def insert(self, table, **kw):
         cols, args = zip(*kw.iteritems())
-        sql = 'insert into `%s` (%s) values (%s)' % (table, ','.join(
-            ['`%s`' % col for col in cols]),
+        sql = 'insert into `%s` (%s) values (%s)' % (
+            table,
+            ','.join(['`%s`' % col for col in cols]),
             ','.join(['?' for i in range(len(cols))]))
         return self._update(sql, *args)
 
