@@ -17,7 +17,7 @@ import MySQLdb
 from Dict import Dict
 
 
-__all__ = ["DB", "with_connection", "with_transaction"]
+__all__ = ["DB"]
 
 
 class _Engine(object):
@@ -156,7 +156,7 @@ def with_transaction(func):
     return _wrapper
 
 
-class DB():
+class DB(object):
     """
     use case:
         db = DB().create_engine('root', 'password', 'test')
