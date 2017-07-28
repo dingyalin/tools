@@ -1,17 +1,19 @@
 # -*- coding: utf-8 -*-
 
-'''
-'''
+"""
+Created on 2017年5月11日
+
+@author: dWX347607
+"""
 
 
 class Dict(dict):
-    '''
-    '''
+    """ Simple dict but support access as x.y style """
 
     def __init__(self, names=(), values=(), **kw):
         super(Dict, self).__init__(**kw)
-        for k, v in zip(names, values):
-            self[k] = v
+        for key, value in zip(names, values):
+            self[key] = value
 
     def __getattr__(self, key):
         try:

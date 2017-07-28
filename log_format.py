@@ -7,13 +7,14 @@ Created on 2016年11月15日
 '''
 
 import logging
-# 配置日志打印
 
 
 def set_logging_format(log_file):
     """ set log format """
-    log_format = '[%(asctime)s][%(filename)s][line:%(lineno)d]' +\
-                 '[%(levelname)s] %(message)s'
+    log_format = (
+        '[%(asctime)s][%(filename)s][line:%(lineno)d]'
+        '[%(levelname)s] %(message)s'
+    )
     logging.basicConfig(level=logging.INFO,
                         format=log_format,
                         datefmt='%a, %d %b %Y %H:%M:%S',
