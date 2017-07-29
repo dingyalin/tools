@@ -279,8 +279,13 @@ if __name__ == "__main__":
     db.update(
         'create table user001 (id int primary key, name text,' +
         'email text, passwd text, last_modified real)')
+    import time
+    u1 = dict(id=2000, name='Bob', email='bob@test.org', passwd='bobobob',
+              last_modified=time.time())
+    u2 = dict(id=2001, name='Aob', email='aob@test.org', passwd='aobobob',
+              last_modified=time.time())
 
     with db.connection():
-        db.select("select * from user001")
-        db.select("select * from user001")
-        db.select("select * from user001")
+        db.insert("user001", **u1)
+        db.insert("user001", **u2)
+        print db.select("select * from user001")
