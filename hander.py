@@ -13,18 +13,16 @@ import logging
 from functools import wraps
 
 
-def exception():
+def exception_hander(func):
     """ 方法异常处理 """
-    def decorator(func):
-        @wraps(func)
-        def wrapper(*args, **kwargs):
-            try:
-                return func(*args, **kwargs)
-            except Exception as ex:
-                logging.exception(ex)
-                raise ex
-        return wrapper
-    return decorator
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        try:
+            return func(*args, **kwargs)
+        except Exception as ex:
+            logging.exception(ex)
+            raise ex
+    return wrapper
 
 
 def retry(
