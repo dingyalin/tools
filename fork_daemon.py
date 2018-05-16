@@ -60,6 +60,7 @@ if __name__ == "__main__":
     daemonize('/dev/null','/home/hzhida/daemon.log','home/hzhida/daemon.log')
     _example_main()
 
+'''
 #第一个fork是为了让shell返回，同时让你完成setsid（从你的控制终端移除，这样就不会意外地收到信号）。setsid使得这个进程成为“会话领导（session leader）”，即如果这个进程打开任何终端，该终端就会成为此进程的控制终端。我们不需要一个守护进程有任何控制终端，所以我们又fork一次。在第二次fork之后，此进程不再是一个“会话领导”，这样它就能打开任何文件（包括终端）且不会意外地再次获得一个控制终端
 
 另外说明：
@@ -71,3 +72,4 @@ rwx-rwx-rwx  代表是777  所有的人都具有权限读写与执行
 chmod()改变文件的权限位
 int dup(int filedes) 返回新文件描述符一定是当前文件描述符中的最小数值
 int dup2(int filedes, int filedes2);这两个函数返回的新文件描述符与参数filedes共享同一个文件表项。
+'''
